@@ -1,0 +1,840 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.35 build -356382666 
+                                                                                               Tue Apr 03 14:39:43 2018
+
+Microchip Technology Omniscient Code Generator v1.35 (Free mode) build 201507080246
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    15                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    16                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    17  0000                     _CCP1CON	set	4029
+    18  0000                     _CCP2CON	set	4026
+    19  0000                     _CCPR2L	set	4027
+    20  0000                     _PIR1bits	set	3998
+    21  0000                     _PORTBbits	set	3969
+    22  0000                     _PR2	set	4043
+    23  0000                     _RCREG	set	4014
+    24  0000                     _RCSTA	set	4011
+    25  0000                     _SPBRG	set	4015
+    26  0000                     _T2CON	set	4042
+    27  0000                     _T2CONbits	set	4042
+    28  0000                     _TMR2	set	4044
+    29  0000                     _TRISBbits	set	3987
+    30  0000                     _TXSTA	set	4012
+    31                           
+    32                           ; #config settings
+    33  0000                     
+    34                           	psect	cinit
+    35  007F02                     __pcinit:
+    36                           	opt stack 0
+    37  007F02                     start_initialization:
+    38                           	opt stack 0
+    39  007F02                     __initialization:
+    40                           	opt stack 0
+    41  007F02                     end_of_initialization:
+    42                           	opt stack 0
+    43  007F02                     __end_of__initialization:
+    44                           	opt stack 0
+    45  007F02  0100               	movlb	0
+    46  007F04  EFD5  F03F         	goto	_main	;jump to C main() function
+    47                           
+    48                           	psect	cstackCOMRAM
+    49  000001                     __pcstackCOMRAM:
+    50                           	opt stack 0
+    51  000001                     uart_rx@z:
+    52                           	opt stack 0
+    53                           
+    54                           ; 1 bytes @ 0x0
+    55  000001                     	ds	1
+    56  000002                     
+    57                           ; 2 bytes @ 0x1
+    58  000002                     	ds	2
+    59  000004                     
+    60                           ; 3 bytes @ 0x3
+    61  000004                     	ds	3
+    62  000007                     main@z:
+    63                           	opt stack 0
+    64                           
+    65                           ; 1 bytes @ 0x6
+    66  000007                     	ds	1
+    67                           
+    68 ;;
+    69 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    70 ;;
+    71 ;; *************** function _main *****************
+    72 ;; Defined at:
+    73 ;;		line 15 in file "main.c"
+    74 ;; Parameters:    Size  Location     Type
+    75 ;;  argc            2    1[COMRAM] int 
+    76 ;;  argv            3    3[COMRAM] PTR PTR unsigned char 
+    77 ;; Auto vars:     Size  Location     Type
+    78 ;;  z               1    6[COMRAM] unsigned char 
+    79 ;; Return value:  Size  Location     Type
+    80 ;;                  2    1[COMRAM] int 
+    81 ;; Registers used:
+    82 ;;		wreg, status,2, status,0, cstack
+    83 ;; Tracked objects:
+    84 ;;		On entry : 0/0
+    85 ;;		On exit  : 0/0
+    86 ;;		Unchanged: 0/0
+    87 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+    88 ;;      Params:         5       0       0       0       0       0       0       0       0
+    89 ;;      Locals:         1       0       0       0       0       0       0       0       0
+    90 ;;      Temps:          0       0       0       0       0       0       0       0       0
+    91 ;;      Totals:         6       0       0       0       0       0       0       0       0
+    92 ;;Total ram usage:        6 bytes
+    93 ;; Hardware stack levels required when called:    1
+    94 ;; This function calls:
+    95 ;;		_pwm_25
+    96 ;;		_pwm_50
+    97 ;;		_pwm_75
+    98 ;;		_pwm_off
+    99 ;;		_pwm_on
+   100 ;;		_uart_init
+   101 ;;		_uart_rx
+   102 ;; This function is called by:
+   103 ;;		Startup code after reset
+   104 ;; This function uses a non-reentrant model
+   105 ;;
+   106                           
+   107                           	psect	text0
+   108  007FAA                     __ptext0:
+   109                           	opt stack 0
+   110  007FAA                     _main:
+   111                           	opt stack 30
+   112                           
+   113                           ;main.c: 18: unsigned char z;
+   114                           ;main.c: 19: TRISBbits.RB0=0;
+   115                           
+   116                           ;incstack = 0
+   117  007FAA  9093               	bcf	3987,0,c	;volatile
+   118                           
+   119                           ;main.c: 20: TRISBbits.RB1=0;
+   120  007FAC  9293               	bcf	3987,1,c	;volatile
+   121                           
+   122                           ;main.c: 21: PORTBbits.RB1=0;
+   123  007FAE  9281               	bcf	3969,1,c	;volatile
+   124                           
+   125                           ;main.c: 22: uart_init();
+   126  007FB0  EC84  F03F         	call	_uart_init	;wreg free
+   127  007FB4                     l55:
+   128                           
+   129                           ;main.c: 24: {
+   130                           ;main.c: 25: z=uart_rx();
+   131  007FB4  EC8B  F03F         	call	_uart_rx	;wreg free
+   132  007FB8  6E07               	movwf	main@z,c
+   133                           
+   134                           ;main.c: 26: if(z=='a')
+   135  007FBA  0E61               	movlw	97
+   136  007FBC  1807               	xorwf	main@z,w,c
+   137  007FBE  B4D8               	btfsc	status,2,c
+   138                           
+   139                           ;main.c: 27: {
+   140                           ;main.c: 28: pwm_on();
+   141  007FC0  ECB9  F03F         	call	_pwm_on	;wreg free
+   142                           
+   143                           ;main.c: 29: }
+   144                           ;main.c: 30: if(z=='b')
+   145  007FC4  0E62               	movlw	98
+   146  007FC6  1807               	xorwf	main@z,w,c
+   147  007FC8  B4D8               	btfsc	status,2,c
+   148                           
+   149                           ;main.c: 31: {
+   150                           ;main.c: 32: pwm_25();
+   151  007FCA  ECC6  F03F         	call	_pwm_25	;wreg free
+   152                           
+   153                           ;main.c: 33: }
+   154                           ;main.c: 34: if(z=='c')
+   155  007FCE  0E63               	movlw	99
+   156  007FD0  1807               	xorwf	main@z,w,c
+   157  007FD2  B4D8               	btfsc	status,2,c
+   158                           
+   159                           ;main.c: 35: {
+   160                           ;main.c: 36: pwm_50();
+   161  007FD4  EC92  F03F         	call	_pwm_50	;wreg free
+   162                           
+   163                           ;main.c: 37: }
+   164                           ;main.c: 38: if(z=='d')
+   165  007FD8  0E64               	movlw	100
+   166  007FDA  1807               	xorwf	main@z,w,c
+   167  007FDC  B4D8               	btfsc	status,2,c
+   168                           
+   169                           ;main.c: 39: {
+   170                           ;main.c: 40: pwm_75();
+   171  007FDE  EC9F  F03F         	call	_pwm_75	;wreg free
+   172                           
+   173                           ;main.c: 41: }
+   174                           ;main.c: 42: if(z=='e')
+   175  007FE2  0E65               	movlw	101
+   176  007FE4  1807               	xorwf	main@z,w,c
+   177  007FE6  B4D8               	btfsc	status,2,c
+   178                           
+   179                           ;main.c: 43: {
+   180                           ;main.c: 44: pwm_off();
+   181  007FE8  ECAC  F03F         	call	_pwm_off	;wreg free
+   182                           
+   183                           ;main.c: 45: }
+   184                           ;main.c: 46: if(z=='f')
+   185  007FEC  0E66               	movlw	102
+   186  007FEE  1807               	xorwf	main@z,w,c
+   187  007FF0  B4D8               	btfsc	status,2,c
+   188                           
+   189                           ;main.c: 47: {
+   190                           ;main.c: 48: PORTBbits.RB1=1;
+   191  007FF2  8281               	bsf	3969,1,c	;volatile
+   192                           
+   193                           ;main.c: 49: }
+   194                           ;main.c: 50: if(z=='g')
+   195  007FF4  0E67               	movlw	103
+   196  007FF6  1807               	xorwf	main@z,w,c
+   197  007FF8  A4D8               	btfss	status,2,c
+   198  007FFA  D7DC               	goto	l55
+   199                           
+   200                           ;main.c: 51: {
+   201                           ;main.c: 52: PORTBbits.RB1=0;
+   202  007FFC  9281               	bcf	3969,1,c	;volatile
+   203  007FFE  D7DA               	goto	l55
+   204  008000                     __end_of_main:
+   205                           	opt stack 0
+   206                           status	equ	0xFD8
+   207                           
+   208 ;; *************** function _uart_rx *****************
+   209 ;; Defined at:
+   210 ;;		line 11 in file "uart.h"
+   211 ;; Parameters:    Size  Location     Type
+   212 ;;		None
+   213 ;; Auto vars:     Size  Location     Type
+   214 ;;  z               1    0[COMRAM] unsigned char 
+   215 ;; Return value:  Size  Location     Type
+   216 ;;                  1    wreg      unsigned char 
+   217 ;; Registers used:
+   218 ;;		wreg, status,2
+   219 ;; Tracked objects:
+   220 ;;		On entry : 0/0
+   221 ;;		On exit  : 0/0
+   222 ;;		Unchanged: 0/0
+   223 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   224 ;;      Params:         0       0       0       0       0       0       0       0       0
+   225 ;;      Locals:         1       0       0       0       0       0       0       0       0
+   226 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   227 ;;      Totals:         1       0       0       0       0       0       0       0       0
+   228 ;;Total ram usage:        1 bytes
+   229 ;; Hardware stack levels used:    1
+   230 ;; This function calls:
+   231 ;;		Nothing
+   232 ;; This function is called by:
+   233 ;;		_main
+   234 ;; This function uses a non-reentrant model
+   235 ;;
+   236                           
+   237                           	psect	text1
+   238  007F16                     __ptext1:
+   239                           	opt stack 0
+   240  007F16                     _uart_rx:
+   241                           	opt stack 30
+   242  007F16                     l49:
+   243  007F16  AA9E               	btfss	3998,5,c	;volatile
+   244  007F18  D7FE               	goto	l49
+   245                           
+   246                           ;uart.h: 15: z=RCREG;
+   247  007F1A  CFAE F001          	movff	4014,uart_rx@z	;volatile
+   248                           
+   249                           ;uart.h: 16: PIR1bits.RCIF=0;
+   250  007F1E  9A9E               	bcf	3998,5,c	;volatile
+   251                           
+   252                           ;uart.h: 17: return(z);
+   253  007F20  5001               	movf	uart_rx@z,w,c
+   254  007F22  0012               	return	
+   255  007F24                     __end_of_uart_rx:
+   256                           	opt stack 0
+   257                           status	equ	0xFD8
+   258                           
+   259 ;; *************** function _uart_init *****************
+   260 ;; Defined at:
+   261 ;;		line 5 in file "uart.h"
+   262 ;; Parameters:    Size  Location     Type
+   263 ;;		None
+   264 ;; Auto vars:     Size  Location     Type
+   265 ;;		None
+   266 ;; Return value:  Size  Location     Type
+   267 ;;		None               void
+   268 ;; Registers used:
+   269 ;;		wreg, status,2
+   270 ;; Tracked objects:
+   271 ;;		On entry : 0/0
+   272 ;;		On exit  : 0/0
+   273 ;;		Unchanged: 0/0
+   274 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   275 ;;      Params:         0       0       0       0       0       0       0       0       0
+   276 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   277 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   278 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   279 ;;Total ram usage:        0 bytes
+   280 ;; Hardware stack levels used:    1
+   281 ;; This function calls:
+   282 ;;		Nothing
+   283 ;; This function is called by:
+   284 ;;		_main
+   285 ;; This function uses a non-reentrant model
+   286 ;;
+   287                           
+   288                           	psect	text2
+   289  007F08                     __ptext2:
+   290                           	opt stack 0
+   291  007F08                     _uart_init:
+   292                           	opt stack 30
+   293                           
+   294                           ;uart.h: 7: TXSTA=0x20;
+   295                           
+   296                           ;incstack = 0
+   297  007F08  0E20               	movlw	32
+   298  007F0A  6EAC               	movwf	4012,c	;volatile
+   299                           
+   300                           ;uart.h: 8: SPBRG=31;
+   301  007F0C  0E1F               	movlw	31
+   302  007F0E  6EAF               	movwf	4015,c	;volatile
+   303                           
+   304                           ;uart.h: 9: RCSTA=0x90;
+   305  007F10  0E90               	movlw	144
+   306  007F12  6EAB               	movwf	4011,c	;volatile
+   307  007F14  0012               	return		;funcret
+   308  007F16                     __end_of_uart_init:
+   309                           	opt stack 0
+   310                           status	equ	0xFD8
+   311                           
+   312 ;; *************** function _pwm_on *****************
+   313 ;; Defined at:
+   314 ;;		line 41 in file "pwm.h"
+   315 ;; Parameters:    Size  Location     Type
+   316 ;;		None
+   317 ;; Auto vars:     Size  Location     Type
+   318 ;;		None
+   319 ;; Return value:  Size  Location     Type
+   320 ;;		None               void
+   321 ;; Registers used:
+   322 ;;		wreg, status,2
+   323 ;; Tracked objects:
+   324 ;;		On entry : 0/0
+   325 ;;		On exit  : 0/0
+   326 ;;		Unchanged: 0/0
+   327 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   328 ;;      Params:         0       0       0       0       0       0       0       0       0
+   329 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   330 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   331 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   332 ;;Total ram usage:        0 bytes
+   333 ;; Hardware stack levels used:    1
+   334 ;; This function calls:
+   335 ;;		Nothing
+   336 ;; This function is called by:
+   337 ;;		_main
+   338 ;; This function uses a non-reentrant model
+   339 ;;
+   340                           
+   341                           	psect	text3
+   342  007F72                     __ptext3:
+   343                           	opt stack 0
+   344  007F72                     _pwm_on:
+   345                           	opt stack 30
+   346                           
+   347                           ;pwm.h: 44: TRISBbits.RB3=0;
+   348                           
+   349                           ;incstack = 0
+   350  007F72  9693               	bcf	3987,3,c	;volatile
+   351                           
+   352                           ;pwm.h: 45: T2CON=0X00;
+   353  007F74  0E00               	movlw	0
+   354  007F76  6ECA               	movwf	4042,c	;volatile
+   355                           
+   356                           ;pwm.h: 46: CCP2CON=0X1f;
+   357  007F78  0E1F               	movlw	31
+   358  007F7A  6EBA               	movwf	4026,c	;volatile
+   359                           
+   360                           ;pwm.h: 47: PR2=99;
+   361  007F7C  0E63               	movlw	99
+   362  007F7E  6ECB               	movwf	4043,c	;volatile
+   363                           
+   364                           ;pwm.h: 48: TMR2=0X00;
+   365  007F80  0E00               	movlw	0
+   366  007F82  6ECC               	movwf	4044,c	;volatile
+   367                           
+   368                           ;pwm.h: 49: CCPR2L=99;
+   369  007F84  0E63               	movlw	99
+   370  007F86  6EBB               	movwf	4027,c	;volatile
+   371                           
+   372                           ;pwm.h: 50: T2CONbits.TMR2ON=1;
+   373  007F88  84CA               	bsf	4042,2,c	;volatile
+   374  007F8A  0012               	return		;funcret
+   375  007F8C                     __end_of_pwm_on:
+   376                           	opt stack 0
+   377                           status	equ	0xFD8
+   378                           
+   379 ;; *************** function _pwm_off *****************
+   380 ;; Defined at:
+   381 ;;		line 53 in file "pwm.h"
+   382 ;; Parameters:    Size  Location     Type
+   383 ;;		None
+   384 ;; Auto vars:     Size  Location     Type
+   385 ;;		None
+   386 ;; Return value:  Size  Location     Type
+   387 ;;		None               void
+   388 ;; Registers used:
+   389 ;;		wreg, status,2
+   390 ;; Tracked objects:
+   391 ;;		On entry : 0/0
+   392 ;;		On exit  : 0/0
+   393 ;;		Unchanged: 0/0
+   394 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   395 ;;      Params:         0       0       0       0       0       0       0       0       0
+   396 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   397 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   398 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   399 ;;Total ram usage:        0 bytes
+   400 ;; Hardware stack levels used:    1
+   401 ;; This function calls:
+   402 ;;		Nothing
+   403 ;; This function is called by:
+   404 ;;		_main
+   405 ;; This function uses a non-reentrant model
+   406 ;;
+   407                           
+   408                           	psect	text4
+   409  007F58                     __ptext4:
+   410                           	opt stack 0
+   411  007F58                     _pwm_off:
+   412                           	opt stack 30
+   413                           
+   414                           ;pwm.h: 56: TRISBbits.RB3=0;
+   415                           
+   416                           ;incstack = 0
+   417  007F58  9693               	bcf	3987,3,c	;volatile
+   418                           
+   419                           ;pwm.h: 57: T2CON=0X00;
+   420  007F5A  0E00               	movlw	0
+   421  007F5C  6ECA               	movwf	4042,c	;volatile
+   422                           
+   423                           ;pwm.h: 58: CCP2CON=0X1f;
+   424  007F5E  0E1F               	movlw	31
+   425  007F60  6EBA               	movwf	4026,c	;volatile
+   426                           
+   427                           ;pwm.h: 59: PR2=99;
+   428  007F62  0E63               	movlw	99
+   429  007F64  6ECB               	movwf	4043,c	;volatile
+   430                           
+   431                           ;pwm.h: 60: TMR2=0X00;
+   432  007F66  0E00               	movlw	0
+   433  007F68  6ECC               	movwf	4044,c	;volatile
+   434                           
+   435                           ;pwm.h: 61: CCPR2L=00;
+   436  007F6A  0E00               	movlw	0
+   437  007F6C  6EBB               	movwf	4027,c	;volatile
+   438                           
+   439                           ;pwm.h: 62: T2CONbits.TMR2ON=1;
+   440  007F6E  84CA               	bsf	4042,2,c	;volatile
+   441  007F70  0012               	return		;funcret
+   442  007F72                     __end_of_pwm_off:
+   443                           	opt stack 0
+   444                           status	equ	0xFD8
+   445                           
+   446 ;; *************** function _pwm_75 *****************
+   447 ;; Defined at:
+   448 ;;		line 29 in file "pwm.h"
+   449 ;; Parameters:    Size  Location     Type
+   450 ;;		None
+   451 ;; Auto vars:     Size  Location     Type
+   452 ;;		None
+   453 ;; Return value:  Size  Location     Type
+   454 ;;		None               void
+   455 ;; Registers used:
+   456 ;;		wreg, status,2
+   457 ;; Tracked objects:
+   458 ;;		On entry : 0/0
+   459 ;;		On exit  : 0/0
+   460 ;;		Unchanged: 0/0
+   461 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   462 ;;      Params:         0       0       0       0       0       0       0       0       0
+   463 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   464 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   465 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   466 ;;Total ram usage:        0 bytes
+   467 ;; Hardware stack levels used:    1
+   468 ;; This function calls:
+   469 ;;		Nothing
+   470 ;; This function is called by:
+   471 ;;		_main
+   472 ;; This function uses a non-reentrant model
+   473 ;;
+   474                           
+   475                           	psect	text5
+   476  007F3E                     __ptext5:
+   477                           	opt stack 0
+   478  007F3E                     _pwm_75:
+   479                           	opt stack 30
+   480                           
+   481                           ;pwm.h: 32: TRISBbits.RB3=0;
+   482                           
+   483                           ;incstack = 0
+   484  007F3E  9693               	bcf	3987,3,c	;volatile
+   485                           
+   486                           ;pwm.h: 33: T2CON=0X00;
+   487  007F40  0E00               	movlw	0
+   488  007F42  6ECA               	movwf	4042,c	;volatile
+   489                           
+   490                           ;pwm.h: 34: CCP2CON=0X1f;
+   491  007F44  0E1F               	movlw	31
+   492  007F46  6EBA               	movwf	4026,c	;volatile
+   493                           
+   494                           ;pwm.h: 35: PR2=99;
+   495  007F48  0E63               	movlw	99
+   496  007F4A  6ECB               	movwf	4043,c	;volatile
+   497                           
+   498                           ;pwm.h: 36: TMR2=0X00;
+   499  007F4C  0E00               	movlw	0
+   500  007F4E  6ECC               	movwf	4044,c	;volatile
+   501                           
+   502                           ;pwm.h: 37: CCPR2L=75;
+   503  007F50  0E4B               	movlw	75
+   504  007F52  6EBB               	movwf	4027,c	;volatile
+   505                           
+   506                           ;pwm.h: 38: T2CONbits.TMR2ON=1;
+   507  007F54  84CA               	bsf	4042,2,c	;volatile
+   508  007F56  0012               	return		;funcret
+   509  007F58                     __end_of_pwm_75:
+   510                           	opt stack 0
+   511                           status	equ	0xFD8
+   512                           
+   513 ;; *************** function _pwm_50 *****************
+   514 ;; Defined at:
+   515 ;;		line 18 in file "pwm.h"
+   516 ;; Parameters:    Size  Location     Type
+   517 ;;		None
+   518 ;; Auto vars:     Size  Location     Type
+   519 ;;		None
+   520 ;; Return value:  Size  Location     Type
+   521 ;;		None               void
+   522 ;; Registers used:
+   523 ;;		wreg, status,2
+   524 ;; Tracked objects:
+   525 ;;		On entry : 0/0
+   526 ;;		On exit  : 0/0
+   527 ;;		Unchanged: 0/0
+   528 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   529 ;;      Params:         0       0       0       0       0       0       0       0       0
+   530 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   531 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   532 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   533 ;;Total ram usage:        0 bytes
+   534 ;; Hardware stack levels used:    1
+   535 ;; This function calls:
+   536 ;;		Nothing
+   537 ;; This function is called by:
+   538 ;;		_main
+   539 ;; This function uses a non-reentrant model
+   540 ;;
+   541                           
+   542                           	psect	text6
+   543  007F24                     __ptext6:
+   544                           	opt stack 0
+   545  007F24                     _pwm_50:
+   546                           	opt stack 30
+   547                           
+   548                           ;pwm.h: 20: TRISBbits.RB3=0;
+   549                           
+   550                           ;incstack = 0
+   551  007F24  9693               	bcf	3987,3,c	;volatile
+   552                           
+   553                           ;pwm.h: 21: T2CON=0X00;
+   554  007F26  0E00               	movlw	0
+   555  007F28  6ECA               	movwf	4042,c	;volatile
+   556                           
+   557                           ;pwm.h: 22: CCP2CON=0X1f;
+   558  007F2A  0E1F               	movlw	31
+   559  007F2C  6EBA               	movwf	4026,c	;volatile
+   560                           
+   561                           ;pwm.h: 23: PR2=99;
+   562  007F2E  0E63               	movlw	99
+   563  007F30  6ECB               	movwf	4043,c	;volatile
+   564                           
+   565                           ;pwm.h: 24: TMR2=0X00;
+   566  007F32  0E00               	movlw	0
+   567  007F34  6ECC               	movwf	4044,c	;volatile
+   568                           
+   569                           ;pwm.h: 25: CCPR2L=50;
+   570  007F36  0E32               	movlw	50
+   571  007F38  6EBB               	movwf	4027,c	;volatile
+   572                           
+   573                           ;pwm.h: 26: T2CONbits.TMR2ON=1;
+   574  007F3A  84CA               	bsf	4042,2,c	;volatile
+   575  007F3C  0012               	return		;funcret
+   576  007F3E                     __end_of_pwm_50:
+   577                           	opt stack 0
+   578                           status	equ	0xFD8
+   579                           
+   580 ;; *************** function _pwm_25 *****************
+   581 ;; Defined at:
+   582 ;;		line 7 in file "pwm.h"
+   583 ;; Parameters:    Size  Location     Type
+   584 ;;		None
+   585 ;; Auto vars:     Size  Location     Type
+   586 ;;		None
+   587 ;; Return value:  Size  Location     Type
+   588 ;;		None               void
+   589 ;; Registers used:
+   590 ;;		wreg, status,2
+   591 ;; Tracked objects:
+   592 ;;		On entry : 0/0
+   593 ;;		On exit  : 0/0
+   594 ;;		Unchanged: 0/0
+   595 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   596 ;;      Params:         0       0       0       0       0       0       0       0       0
+   597 ;;      Locals:         0       0       0       0       0       0       0       0       0
+   598 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   599 ;;      Totals:         0       0       0       0       0       0       0       0       0
+   600 ;;Total ram usage:        0 bytes
+   601 ;; Hardware stack levels used:    1
+   602 ;; This function calls:
+   603 ;;		Nothing
+   604 ;; This function is called by:
+   605 ;;		_main
+   606 ;; This function uses a non-reentrant model
+   607 ;;
+   608                           
+   609                           	psect	text7
+   610  007F8C                     __ptext7:
+   611                           	opt stack 0
+   612  007F8C                     _pwm_25:
+   613                           	opt stack 30
+   614                           
+   615                           ;pwm.h: 9: TRISBbits.RB3=0;
+   616                           
+   617                           ;incstack = 0
+   618  007F8C  9693               	bcf	3987,3,c	;volatile
+   619                           
+   620                           ;pwm.h: 10: T2CON=0X00;
+   621  007F8E  0E00               	movlw	0
+   622  007F90  6ECA               	movwf	4042,c	;volatile
+   623                           
+   624                           ;pwm.h: 11: CCP2CON=0X1f;
+   625  007F92  0E1F               	movlw	31
+   626  007F94  6EBA               	movwf	4026,c	;volatile
+   627                           
+   628                           ;pwm.h: 12: PR2=99;
+   629  007F96  0E63               	movlw	99
+   630  007F98  6ECB               	movwf	4043,c	;volatile
+   631                           
+   632                           ;pwm.h: 13: TMR2=0X00;
+   633  007F9A  0E00               	movlw	0
+   634  007F9C  6ECC               	movwf	4044,c	;volatile
+   635                           
+   636                           ;pwm.h: 14: CCPR2L=25;
+   637  007F9E  0E19               	movlw	25
+   638  007FA0  6EBB               	movwf	4027,c	;volatile
+   639                           
+   640                           ;pwm.h: 15: T2CONbits.TMR2ON=1;
+   641  007FA2  84CA               	bsf	4042,2,c	;volatile
+   642                           
+   643                           ;pwm.h: 16: CCP1CON=0X00;
+   644  007FA4  0E00               	movlw	0
+   645  007FA6  6EBD               	movwf	4029,c	;volatile
+   646  007FA8  0012               	return		;funcret
+   647  007FAA                     __end_of_pwm_25:
+   648                           	opt stack 0
+   649  0000                     status	equ	0xFD8
+   650                           status	equ	0xFD8
+   651                           
+   652                           	psect	rparam
+   653  0000                     status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      7       7
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    _main->_uart_rx
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 6     1      5     170
+                                              1 COMRAM     6     1      5
+                             _pwm_25
+                             _pwm_50
+                             _pwm_75
+                            _pwm_off
+                             _pwm_on
+                          _uart_init
+                            _uart_rx
+ ---------------------------------------------------------------------------------
+ (1) _uart_rx                                              1     1      0      15
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _uart_init                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _pwm_on                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _pwm_off                                              0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _pwm_75                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _pwm_50                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _pwm_25                                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _pwm_25
+   _pwm_50
+   _pwm_75
+   _pwm_off
+   _pwm_on
+   _uart_init
+   _uart_rx
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      7       7       1        7.4%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+ABS                  0      0       0      20        0.0%
+BIGRAM             7FF      0       0      21        0.0%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.35 build -356382666 
+Symbol Table                                                                                   Tue Apr 03 14:39:43 2018
+
+                     l55 7FB4                       l49 7F16              __CFG_BORV$3 000000  
+           __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000             __CFG_CP2$OFF 000000  
+           __CFG_CP3$OFF 000000             __CFG_CPB$OFF 000000                      _PR2 000FCB  
+           __CFG_CPD$OFF 000000             __CFG_BOR$OFF 000000             __CFG_FOSC$HS 000000  
+           __CFG_LVP$OFF 000000             __CFG_WDT$OFF 000000                     _TMR2 000FCC  
+                   _main 7FAA                     start 0000            __CFG_IESO$OFF 000000  
+          __CFG_MCLRE$ON 000000             ___param_bank 000010            __CFG_PLLDIV$1 000000  
+                  ?_main 0002                    _T2CON 000FCA                    _RCREG 000FAE  
+                  _RCSTA 000FAB                    _SPBRG 000FAF            __CFG_USBDIV$1 000000  
+                  _TXSTA 000FAC            __CFG_PWRT$OFF 000000            __CFG_WRT0$OFF 000000  
+          __CFG_WRT1$OFF 000000            __CFG_WRT2$OFF 000000            __CFG_WRT3$OFF 000000  
+         __CFG_EBTR0$OFF 000000           __CFG_FCMEN$OFF 000000           __CFG_EBTR1$OFF 000000  
+         __CFG_EBTR2$OFF 000000           __CFG_EBTR3$OFF 000000            __CFG_WRTB$OFF 000000  
+          __CFG_WRTC$OFF 000000            __CFG_WRTD$OFF 000000           __CFG_EBTRB$OFF 000000  
+                  main@z 0007          __end_of_uart_rx 7F24          __end_of_pwm_off 7F72  
+                  status 000FD8           __CFG_ICPRT$OFF 000000          __initialization 7F02  
+           __end_of_main 8000                   ??_main 0007            __activetblptr 000000  
+        __CFG_CCP2MX$OFF 000000                   _CCPR2L 000FBB           __CFG_XINST$OFF 000000  
+                 _pwm_25 7F8C                   _pwm_50 7F24                   _pwm_75 7F3E  
+                 _pwm_on 7F72                ??_uart_rx 0001                ??_pwm_off 0001  
+             __accesstop 0060  __end_of__initialization 7F02          __CFG_PBADEN$OFF 000000  
+          ___rparam_used 000001           __pcstackCOMRAM 0001                  _CCP1CON 000FBD  
+                _CCP2CON 000FBA                  ?_pwm_25 0001                  ?_pwm_50 0001  
+                ?_pwm_75 0001                  ?_pwm_on 0001       __size_of_uart_init 000E  
+        __CFG_VREGEN$OFF 000000                  __Hparam 0000                  __Lparam 0000  
+        __CFG_STVREN$OFF 000000                  __pcinit 7F02                  __ramtop 0800  
+        __size_of_pwm_25 001E          __size_of_pwm_50 001A          __size_of_pwm_75 001A  
+                __ptext0 7FAA                  __ptext1 7F16                  __ptext2 7F08  
+                __ptext3 7F72                  __ptext4 7F58                  __ptext5 7F3E  
+                __ptext6 7F24                  __ptext7 7F8C          __size_of_pwm_on 001A  
+              _T2CONbits 000FCA                  _uart_rx 7F16                  _pwm_off 7F58  
+   end_of_initialization 7F02        __end_of_uart_init 7F16                _PORTBbits 000F81  
+              _TRISBbits 000F93           __end_of_pwm_25 7FAA           __end_of_pwm_50 7F3E  
+         __end_of_pwm_75 7F58           __end_of_pwm_on 7F8C      start_initialization 7F02  
+       __CFG_LPT1OSC$OFF 000000                 ??_pwm_25 0001                 ??_pwm_50 0001  
+               ??_pwm_75 0001                 ??_pwm_on 0001                 ?_uart_rx 0001  
+               ?_pwm_off 0001                 _PIR1bits 000F9E         __CFG_WDTPS$32768 000000  
+              _uart_init 7F08                 __Hrparam 0000                 __Lrparam 0000  
+             ?_uart_init 0001         __size_of_uart_rx 000E         __size_of_pwm_off 001A  
+          __size_of_main 0056                 main@argc 0002                 main@argv 0004  
+  __CFG_CPUDIV$OSC1_PLL2 000000                 uart_rx@z 0001              ??_uart_init 0001  
